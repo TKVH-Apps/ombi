@@ -1,0 +1,28 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: ombi
+  annotations:
+    nfs.io/storage-path: "data01/ombi"
+spec:
+  storageClassName: managed-nfs-storage
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: ombi-mariadb
+  annotations:
+    nfs.io/storage-path: "data01/ombi/db"
+spec:
+  storageClassName: managed-nfs-storage
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi

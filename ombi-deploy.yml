@@ -1,0 +1,51 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ombi
+  labels:
+    app: ombi
+    part-of: ombi
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@hourly"
+    keel.sh/match-tag: true
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ombi
+      part-of: ombi
+  template:
+    metadata:
+      labels:
+        app: ombi
+        part-of: ombi
+    spec:
+      containers:
+      - name: ombi
+        image: ghcr.io/linuxserver/ombi:development
+        ports:
+        - name: ombi
+          containerPort: 3579
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: UMASK
+          value: "022"
+        - name: BASE_URL
+          value: "/ombi"
+        volumeMounts:
+        - name: ombi
+          mountPath: /config
+        resources:
+          limits:
+            memory: 256Mi
+          requests:
+            memory: 128Mi
+      volumes:
+      - name: ombi
+        persistentVolumeClaim:
+          claimName: ombi

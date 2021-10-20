@@ -1,0 +1,76 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: mariadb
+  labels:
+    app: mariadb
+    part-of: ombi
+  annotations:
+    keel.sh/policy: force
+    keel.sh/trigger: poll
+    keel.sh/pollSchedule: "@hourly"
+    keel.sh/match-tag: true
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mariadb
+      part-of: ombi
+  template:
+    metadata:
+      labels:
+        app: mariadb
+        part-of: ombi
+    spec:
+      serviceAccountName: ombi
+      containers:
+      - name: mariadb
+        image: ghcr.io/linuxserver/mariadb:latest
+        ports:
+        - name: mariadb
+          containerPort: 3306
+        env:
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "Europe/Paris"
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ombi
+              key: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_LOG_CONSOLE
+          value: "false"
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: ombi
+              key: MYSQL_USER
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: ombi
+              key: MYSQL_DATABASE
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ombi
+              key: MYSQL_PASSWORD
+        volumeMounts:
+        - name: ombi-mariadb
+          mountPath: /config
+        - name: ombi-secrets
+          mountPath: "/mnt/vault"
+          readOnly: true
+      volumes:
+      - name: ombi-mariadb
+        persistentVolumeClaim:
+          claimName: ombi-mariadb
+      - name: ombi-secrets
+        csi:
+          driver: "secrets-store.csi.k8s.io"
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "ombi"
