@@ -52,9 +52,9 @@ spec:
           periodSeconds: 20
         resources:
           limits:
-            memory: 256Mi
-          requests:
             memory: 128Mi
+          requests:
+            memory: 64Mi
       volumes:
       - name: ombi
         persistentVolumeClaim:
