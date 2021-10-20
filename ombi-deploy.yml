@@ -40,6 +40,16 @@ spec:
         volumeMounts:
         - name: ombi
           mountPath: /config
+        readinessProbe:
+          tcpSocket:
+            port: ombi
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: ombi
+          initialDelaySeconds: 15
+          periodSeconds: 20
         resources:
           limits:
             memory: 256Mi
