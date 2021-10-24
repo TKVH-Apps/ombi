@@ -60,7 +60,7 @@ spec:
               key: MYSQL_PASSWORD
         resources:
           limits:
-            memory: 256Mi
+            memory: 512Mi
           requests:
             memory: 128Mi
         volumeMounts:
