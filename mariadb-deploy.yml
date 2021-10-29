@@ -60,9 +60,9 @@ spec:
               key: MYSQL_PASSWORD
         resources:
           limits:
-            memory: 512Mi
-          requests:
             memory: 128Mi
+          requests:
+            memory: 64Mi
         volumeMounts:
         - name: ombi-mariadb
           mountPath: /config
