@@ -16,13 +16,13 @@ spec:
     matchLabels:
       app: mariadb
       part-of: ombi
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
         app: mariadb
         part-of: ombi
-  strategy:
-    type: Recreate
     spec:
       serviceAccountName: ombi
       containers:
