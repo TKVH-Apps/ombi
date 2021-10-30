@@ -21,6 +21,8 @@ spec:
       labels:
         app: mariadbexternal
         part-of: ombi
+  strategy:
+    type: Recreate
     spec:
       serviceAccountName: ombi
       containers:

@@ -21,6 +21,8 @@ spec:
       labels:
         app: mariadb
         part-of: ombi
+  strategy:
+    type: Recreate
     spec:
       serviceAccountName: ombi
       containers:
