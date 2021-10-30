@@ -60,16 +60,6 @@ spec:
             secretKeyRef:
               name: ombi
               key: MYSQL_PASSWORD
-        readinessProbe:
-          tcpSocket:
-            port: mariadbexternal
-          initialDelaySeconds: 5
-          periodSeconds: 10
-        livenessProbe:
-          tcpSocket:
-            port: mariadbexternal
-          initialDelaySeconds: 15
-          periodSeconds: 20
         resources:
           limits:
             memory: 128Mi
