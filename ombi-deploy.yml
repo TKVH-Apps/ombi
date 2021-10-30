@@ -35,18 +35,18 @@ spec:
           value: "1000"
         - name: UMASK
           value: "022"
-        - name: BASE_URL
-          value: "/ombi"
         volumeMounts:
         - name: ombi
           mountPath: /config
         readinessProbe:
-          tcpSocket:
+          httpGet:
+            path: /api/v1/Status
             port: ombi
           initialDelaySeconds: 5
           periodSeconds: 10
         livenessProbe:
-          tcpSocket:
+          httpGet:
+            path: /api/v1/Status
             port: ombi
           initialDelaySeconds: 15
           periodSeconds: 20
