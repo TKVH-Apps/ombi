@@ -67,6 +67,8 @@ spec:
         - name: ombi-secrets
           mountPath: "/mnt/vault"
           readOnly: true
+        - name: ombi-mariadbexternal
+          mountPath: /config
       volumes:
       - name: ombi-secrets
         csi:
@@ -74,3 +76,6 @@ spec:
           readOnly: true
           volumeAttributes:
             secretProviderClass: "ombi"
+      - name: ombi-mariadbexternal
+        persistentVolumeClaim:
+          claimName: ombi-mariadb
