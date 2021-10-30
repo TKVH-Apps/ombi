@@ -78,4 +78,4 @@ spec:
             secretProviderClass: "ombi"
       - name: ombi-mariadbexternal
         persistentVolumeClaim:
-          claimName: ombi-mariadb
+          claimName: ombi-mariadbexternal
