@@ -4,7 +4,7 @@ apiVersion: v1
 metadata:
   name: ombi
   annotations:
-    nfs.io/storage-path: "data01/ombi"
+    nfs.io/storage-path: "data01/ombi/config"
 spec:
   storageClassName: managed-nfs-storage
   accessModes:
