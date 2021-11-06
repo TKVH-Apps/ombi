@@ -8,6 +8,7 @@ resources:
   - ombi-pvc.yml
   - ombi-spc.yml
   - ombi-sa.yml
+  - ombi-ns.yml
   - mariadb-deploy.yml
   - mariadb-svc.yml
   - mariadbexternal-deploy.yml
