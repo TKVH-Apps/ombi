@@ -22,6 +22,16 @@ spec:
         app: ombi
         part-of: ombi
     spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: disktype
+                operator: In
+                values:
+                - ssd
       containers:
       - name: ombi
         image: ghcr.io/linuxserver/ombi:latest
