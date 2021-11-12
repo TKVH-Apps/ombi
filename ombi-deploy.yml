@@ -64,7 +64,7 @@ spec:
           limits:
             memory: 256Mi
           requests:
-            memory: 128Mi
+            memory: 200Mi
       volumes:
       - name: ombi
         persistentVolumeClaim:
