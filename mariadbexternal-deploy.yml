@@ -62,9 +62,9 @@ spec:
               key: MYSQL_PASSWORD
         resources:
           limits:
-            memory: 128Mi
+            memory: 150Mi
           requests:
-            memory: 64Mi
+            memory: 100Mi
         volumeMounts:
         - name: ombi-secrets
           mountPath: "/mnt/vault"
