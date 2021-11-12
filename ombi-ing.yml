@@ -10,7 +10,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: <path:apps-kv/data/ombi/config#HOST>
+  - host: request.<path:apps-kv/data/general#DN>
     http:
       paths:
       - path: /
@@ -22,4 +22,4 @@ spec:
               number: 3579
   tls:
   - hosts:
-    - <path:apps-kv/data/ombi/config#HOST>
+    - request.<path:apps-kv/data/general#DN>
