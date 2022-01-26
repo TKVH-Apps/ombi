@@ -5,11 +5,6 @@ metadata:
   labels:
     app: ombi
     part-of: ombi
-  annotations:
-    keel.sh/policy: force
-    keel.sh/trigger: poll
-    keel.sh/pollSchedule: "@hourly"
-    keel.sh/match-tag: true
 spec:
   replicas: 1
   selector:
@@ -34,7 +29,7 @@ spec:
                 - ssd
       containers:
       - name: ombi
-        image: ghcr.io/linuxserver/ombi:latest
+        image: ghcr.io/linuxserver/ombi:4.10.2
         ports:
         - name: ombi
           containerPort: 3579
