@@ -17,9 +17,9 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: ombi
+            name: ak-outpost-proxy01
             port:
-              number: 3579
+              number: 9000
   tls:
   - hosts:
     - request.<path:apps-kv/data/general#DN>
