@@ -29,7 +29,7 @@ spec:
                 - ssd
       containers:
       - name: ombi
-        image: ghcr.io/linuxserver/ombi:4.14.4-development
+        image: ghcr.io/linuxserver/ombi:4.15.0-development
         ports:
         - name: ombi
           containerPort: 3579
