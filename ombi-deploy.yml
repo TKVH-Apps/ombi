@@ -29,7 +29,7 @@ spec:
                 - ssd
       containers:
       - name: ombi
-        image: ghcr.io/linuxserver/ombi:4.16.14-development
+        image: ghcr.io/linuxserver/ombi:4.21.0-development
         ports:
         - name: ombi
           containerPort: 3579
@@ -57,9 +57,9 @@ spec:
           periodSeconds: 20
         resources:
           limits:
-            memory: 300Mi
+            memory: 600Mi
           requests:
-            memory: 300Mi
+            memory: 550Mi
       volumes:
       - name: ombi
         persistentVolumeClaim:
